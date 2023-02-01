@@ -20,7 +20,7 @@ const Tasks = db.define("tasks", {
     type: DataTypes.INTEGER
   },
   status: {
-    defaultValue: "pending",
+    defaultValue: "active",
     allowNull: false,
     type: DataTypes.STRING
   }

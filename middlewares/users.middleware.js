@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const { Users } = require("../models/users.model");
+const { Tasks } = require("../models/tasks.model");
 const { catchAsync } = require("../utils/catchAsync.utils");
 const { AppError } = require("../utils/appError.util");
 
@@ -8,7 +9,7 @@ const userExistToLogIn = catchAsync( async(req, res, next) => {
   const { email, password } = req.body;
 
   const userRegistered = await Users.findOne({
-    where: { email, status: "active"}
+    where: { email, status: "active"}, include: { model: Tasks, required: false, where: { status: ["active", "pending", "completed", "canceled"] } }
   });
 
   if(!userRegistered || !(await bcrypt.compare(password, userRegistered.password))){
@@ -16,7 +17,6 @@ const userExistToLogIn = catchAsync( async(req, res, next) => {
   }
 
   userRegistered.password = undefined;
-
   req.user = userRegistered;
 
   next();

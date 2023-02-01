@@ -10,8 +10,6 @@ const { Users } = require("../models/users.model");
 
 const { catchAsync } = require("../utils/catchAsync.utils");
 
-const { AppError } = require("../utils/appError.util");
-
 const createUser = catchAsync( async (req, res, next) => {
   const {user_name, email, password} = req.body;
 
@@ -27,7 +25,7 @@ const createUser = catchAsync( async (req, res, next) => {
 
   newUser.password = undefined;
 
-  res.status(200).json({
+  res.status(201).json({
     status: "success",
     data: {
       newUser

@@ -67,4 +67,37 @@ const updateUserValidator = [
   checkValidations
 ];
 
-module.exports = { createUserValidator, loginValidator, updateUserValidator };
+const createTaskValidator = [
+  body("task_name")
+      .isString()
+      .withMessage("Task name must be a string")
+      .notEmpty()
+      .withMessage("Task name cannot be empty"),
+  body("description")
+      .isString()
+      .withMessage("Description must be a string")
+      .notEmpty()
+      .withMessage("Description cannot be empty"),
+  checkValidations
+];
+
+const updateTaskValidator = [
+  body("task_name")
+      .isString()
+      .withMessage("Task name must be a string")
+      .notEmpty()
+      .withMessage("Task name cannot be empty"),
+  body("description")
+      .isString()
+      .withMessage("Description must be a string")
+      .notEmpty()
+      .withMessage("Description cannot be empty"),
+  body("status")
+      .isString()
+      .withMessage("Status must be a string")
+      .notEmpty()
+      .withMessage("Status cannot be empty"),
+  checkValidations
+];
+
+module.exports = { createUserValidator, loginValidator, updateUserValidator, createTaskValidator, updateTaskValidator };

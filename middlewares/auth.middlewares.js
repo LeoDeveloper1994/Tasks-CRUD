@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
 const { Users } = require("../models/users.model");
+const { Tasks } = require("../models/tasks.model");
 
 const { catchAsync } = require("../utils/catchAsync.utils");
 
@@ -48,4 +49,14 @@ const protectedUserAccount = catchAsync( async ( req, res, next ) =>{
   next();
 });
 
-module.exports = { protectedSession, protectedUserAccount };
+const protectedTask = catchAsync( async(req, res, next) => {
+  const { sessionUser, task } = req;
+
+  if (sessionUser.id !== task.user_id) {
+    return next(new AppError("You aren't the owner of this task", 403));
+  }
+
+  next();
+});
+
+module.exports = { protectedSession, protectedUserAccount, protectedTask };
