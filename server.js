@@ -13,8 +13,8 @@ const startServer = async () => {
 
     await db.sync();
 
-    app.listen(process.env.PORT || process.env.PORT_LISTENER, () => {
-      console.log(`Express App runing in port: ${process.env.PORT_LISTENER}.`);
+    app.listen(process.env.PORT || 2894, () => {
+      console.log(`Express App runing in port: ${process.env.PORT || 2894}.`);
     })
   } catch (error) {
     console.log(error);
