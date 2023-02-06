@@ -13,7 +13,7 @@ const userExistToLogIn = catchAsync( async(req, res, next) => {
   });
 
   if(!userRegistered || !(await bcrypt.compare(password, userRegistered.password))){
-    return next(new AppError("Unregistered user", 404));
+    return next(new AppError("Invalid credentials", 404));
   }
 
   userRegistered.password = undefined;
