@@ -26,7 +26,7 @@ app.all("*", (req, res) => {
 
   res.status(404).json({
     status: "error",
-    message: `${method}/${url} dont exist in our server`
+    message: `${method}${url} doesnt exist in our server`
   });
 });
 

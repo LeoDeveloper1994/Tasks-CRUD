@@ -10,7 +10,7 @@ const { Users } = require("../models/users.model");
 
 const { catchAsync } = require("../utils/catchAsync.utils");
 
-const createUser = catchAsync( async (req, res, next) => {
+const createUser = catchAsync( async (req, res) => {
   const {user_name, email, password} = req.body;
 
   const salt = await bcrypt.genSalt(12);
@@ -28,7 +28,7 @@ const createUser = catchAsync( async (req, res, next) => {
   res.status(201).json({
     status: "success",
     data: {
-      newUser
+      newUser: "deberia haber un usuario xd"
     }
   });
 
