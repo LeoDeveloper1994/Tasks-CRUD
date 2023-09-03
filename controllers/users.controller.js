@@ -28,7 +28,7 @@ const createUser = catchAsync( async (req, res) => {
   res.status(201).json({
     status: "success",
     data: {
-      newUser: "deberia haber un usuario xd"
+      newUser
     }
   });
 
